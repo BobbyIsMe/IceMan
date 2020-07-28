@@ -1,0 +1,34 @@
+# A simulation of Iceman's ability! (refer to the Annihilation kit)
+# Plugin made by Joshua CC.
+
+# Placeholders available for messages: %RADIUS%
+
+# =========== IN-GAME SETTINGS ===========
+
+# Settings you can change for the enchantment
+# Includes the enchantment name, maximum radius, and ice decay's delay
+
+Iceboots Enchantment: "&b&lIce Walker %RADIUS%"
+
+Maximum Radius: 5
+
+Decay Seconds: 3
+
+# =========== COMMAND RESPONSES ===========
+
+# Messages for response on executing the command
+# Permission: frost.iceboots
+
+Successful Message: "&aYou have enchanted your boots with &bIce Walker %RADIUS%!"
+
+Incorrect-Item Message: "&cYou must have boots in your hand!"
+
+Incorrect-Number Message: "&cNot a number!"
+
+Little-Arguements Message: "&cToo little arguements!"
+
+Higher-Radius Message: "&cGiven radius is higher than maximum!"
+
+Lower-Radius Message: "&cMust be a higher number than 0!"
+
+No-Permission Message: "&cYou don't have permission to use this command!"

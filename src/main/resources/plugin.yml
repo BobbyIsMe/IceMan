@@ -1,0 +1,6 @@
+name: IceMan
+main: com.joshuacc.iceman.main.FWMain
+description: Freeze water with your ice walking ability!
+author: Joshua CC
+api: ["1.0.0"]
+version: 1.2
