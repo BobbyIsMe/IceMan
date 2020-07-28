@@ -43,7 +43,9 @@ public class FWMain extends PluginBase implements Listener {
 						Location loc = player.getLocation().add(x, -1, z);
 						Block block = loc.getLevelBlock();
 
-						if(block.up().getId() != Block.WATER && block.getId() == Block.WATER && block.getDamage() == 0)
+						if(block.up().getId() != Block.ICE_FROSTED && block.getDamage() == 0 && 
+								block.up().getId() != Block.WATER && block.up().getId() != Block.STILL_WATER && 
+								(block.getId() == Block.WATER || block.getId() == Block.STILL_WATER))
 						{	
 							if(loc.distance(player) >= rad+1)
 								continue;
