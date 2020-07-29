@@ -21,6 +21,8 @@ Decay Seconds: 3
 
 Successful Message: "&aYou have enchanted your boots with &bIce Walker %RADIUS%!"
 
+Has-Enchanted Message: "&cYou have already enchanted this item with Ice Walker!"
+
 Incorrect-Item Message: "&cYou must have boots in your hand!"
 
 Incorrect-Number Message: "&cNot a number!"

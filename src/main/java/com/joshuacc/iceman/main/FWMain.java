@@ -110,7 +110,7 @@ public class FWMain extends PluginBase implements Listener {
 		}
 	}
 
-	private int getRadius(Item item)
+	public static int getRadius(Item item)
 	{
 		if(item.hasCompoundTag() && item.getNamedTag().contains("radius"))
 			return item.getNamedTag().getInt("radius");

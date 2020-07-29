@@ -7,6 +7,8 @@ import cn.nukkit.command.data.CommandParamType;
 import cn.nukkit.command.data.CommandParameter;
 import cn.nukkit.item.Item;
 import cn.nukkit.nbt.tag.CompoundTag;
+import cn.nukkit.nbt.tag.ListTag;
+import cn.nukkit.nbt.tag.StringTag;
 import cn.nukkit.utils.Config;
 import cn.nukkit.utils.TextFormat;
 
@@ -45,11 +47,15 @@ public class IcebootsCommand extends Command {
 						{
 							if(value > 0)
 							{
-								player.getInventory().remove(item);
-								item.setLore("§r"+convertRadius("Iceboots Enchantment", value));
-								player.getInventory().addItem(item);
-								addRadiusTag(item, value);
-								player.sendMessage(convertRadius("Successful Message", value));
+								if(FWMain.getRadius(item) == 0)
+								{
+									player.getInventory().remove(item);
+									addLore(item, "§r"+convertRadius("Iceboots Enchantment", value));
+									player.getInventory().addItem(item);
+									addRadiusTag(item, value);
+									player.sendMessage(convertRadius("Successful Message", value));
+								} else
+									player.sendMessage(format("Has-Enchanted Message"));
 							} else
 								player.sendMessage(format("Lower-Radius Message"));
 						} else 
@@ -75,7 +81,7 @@ public class IcebootsCommand extends Command {
 	{
 		return TextFormat.colorize('&', config.getString(message));
 	}
-	
+
 	private void addRadiusTag(Item item, int radius)
 	{
 		CompoundTag tag;
@@ -85,6 +91,23 @@ public class IcebootsCommand extends Command {
 			tag = item.getNamedTag();
 		tag.putInt("radius", radius);
 
+		item.setNamedTag(tag);
+	}
+
+	public void addLore(Item item, String line) {
+		ListTag<StringTag> lore = new ListTag<>("Lore");
+
+		CompoundTag tag;
+		if(item.hasCompoundTag())
+			tag = item.getNamedTag();
+		else
+			tag = new CompoundTag();
+
+		for(String l : item.getLore())
+			lore.add(new StringTag("",l));
+
+		lore.add(new StringTag("",line));
+		tag.putCompound("display", new CompoundTag("display").putList(lore));
 		item.setNamedTag(tag);
 	}
 }
