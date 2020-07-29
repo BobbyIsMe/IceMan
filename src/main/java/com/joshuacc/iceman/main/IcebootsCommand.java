@@ -94,25 +94,17 @@ public class IcebootsCommand extends Command {
 		item.setNamedTag(tag);
 	}
 
-	public void addLore(Item item, String line) {
-		ListTag<StringTag> lore = new ListTag<>("Lore");
-
+	private void addLore(Item item, String line) {
 		CompoundTag tag;
 		if(item.hasCompoundTag())
 			tag = item.getNamedTag();
 		else
 			tag = new CompoundTag();
 
-		for(String l : item.getLore())
-			lore.add(new StringTag("",l));
-
-		lore.add(new StringTag("",line));
-		
-		if (!tag.contains("display")) {
-            tag.putCompound("display", new CompoundTag("display").putList(lore));
-        } else {
-            tag.getCompound("display").putList(lore);
-        }
+		if(!tag.contains("display"))
+			tag.putCompound("display", new CompoundTag("display").putList(new ListTag<StringTag>("Lore").add(new StringTag("", line))));
+		else
+			tag.getCompound("display").getList("Lore", StringTag.class).add(new StringTag("", line));
 		
 		item.setNamedTag(tag);
 	}
