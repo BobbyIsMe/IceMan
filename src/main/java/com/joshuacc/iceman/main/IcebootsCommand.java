@@ -107,7 +107,13 @@ public class IcebootsCommand extends Command {
 			lore.add(new StringTag("",l));
 
 		lore.add(new StringTag("",line));
-		tag.putCompound("display", new CompoundTag("display").putList(lore));
+		
+		if (!tag.contains("display")) {
+            tag.putCompound("display", new CompoundTag("display").putList(lore));
+        } else {
+            tag.getCompound("display").putList(lore);
+        }
+		
 		item.setNamedTag(tag);
 	}
 }
